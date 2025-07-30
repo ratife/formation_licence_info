@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <h2>Informations de l'Étudiant</h2>
-    <form action="traitement.php" method="post">
+    <form action="/form/controller/create.php" method="post">
         <label>Nom:</label><br>
         <input type="text" name="nom" required><br><br>
 

@@ -1,0 +1,32 @@
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  margin: 20px 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+  background-color: #009879;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  border: 1px solid #dddddd;
+}
+
+.styled-table tbody tr {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #e9f5f4;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #d1f0ec;
+}

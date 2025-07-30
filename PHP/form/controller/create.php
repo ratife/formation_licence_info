@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $stmt->execute();
 
         echo "<h2>Inscription réussie !</h2>";
+        echo "<a href='/form/view/index.php'>Voir la liste des étudiants</a>";
     } catch (PDOException $e) {
         echo "Erreur de connexion ou d'insertion : " . $e->getMessage();
     }
