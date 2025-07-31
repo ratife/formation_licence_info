@@ -7,5 +7,6 @@ CREATE TABLE `etudiants` (
   `email` varchar(50) DEFAULT NULL,
   `sexe` varchar(50) DEFAULT NULL,
   `filiere` varchar(50) DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

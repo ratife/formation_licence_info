@@ -36,7 +36,7 @@
                 echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['sexe']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['filiere']) . "</td>";
-                echo '<td><a href="/form/controller/delete.php?id='.$row['id'].'">Supprimer</a> <a href="edit.php">modifier</a></td>';
+                echo '<td><a href="/form/controller/delete.php?id='.$row['id'].'">Supprimer</a> <a href="/form/controller/edit.php?id='.$row['id'].'">modifier</a></td>';
                 echo "</tr>";
             }
         } catch (PDOException $e) {
