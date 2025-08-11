@@ -45,3 +45,44 @@ function create_etudiant($nom, $prenom, $age, $email, $sexe, $filiere) {
         // Exécution
        return $stmt->execute();
 }
+
+function edit_etudiant_get()
+{
+    $id = intval($_GET['id']);
+    try {
+        $pdo = new PDO("mysql:host=mysql;dbname=testdb;charset=utf8", "root", "root");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $stmt = $pdo->query("SELECT id,nom, prenom, age, email, sexe, filiere FROM etudiants WHERE id = $id");
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+        echo "Erreur de connexion ou de suppression : " . $e->getMessage();
+    }      
+    
+} 
+
+function edit_etudiant_post()
+{
+    
+       $pdo = new PDO("mysql:host=mysql;dbname=testdb;charset=utf8", "root", "root");
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Préparation de la requête
+        $sql = "UPDATE etudiants 
+                set nom = :nom, prenom = :prenom, age = :age, email = :email, sexe = :sexe, filiere = :filiere,update_time = now()
+                WHERE id = :id
+                ";
+        
+        $stmt = $pdo->prepare($sql);
+        // Liaison des paramètres
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':age', $age);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':sexe', $sexe);
+        $stmt->bindParam(':filiere', $filiere);
+        $stmt->bindParam(':id', $id);
+
+        // Exécution
+        return $stmt->execute();
+
+}
