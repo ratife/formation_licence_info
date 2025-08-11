@@ -31,3 +31,9 @@ Pour arrêter les conteneurs et supprimer le réseau associé :
 docker-compose down
 ```
 
+## Création user 
+
+```bash
+htpasswd -c .htpasswd user
+```
+
