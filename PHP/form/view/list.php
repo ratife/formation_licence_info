@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Liste étudiants</h2>
-    <a href="form.php">Créer un étudiant</a>
+    <a href="/form/controller/create.php">Créer un étudiant</a>
     <table class="styled-table">
         <thead>
             <tr>

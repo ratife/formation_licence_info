@@ -27,6 +27,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } catch (PDOException $e) {
         echo "Erreur de connexion ou d'insertion : " . $e->getMessage();
     }
+}
+else if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    
+  include '../view/form.php';
+
     
 } else {
     echo "Aucune donnée reçue.";

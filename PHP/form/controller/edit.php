@@ -1,5 +1,5 @@
 <?php
-require_once("/form/data/etudiant_data.php");
+require_once '../data/etudiant_data.php';
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['id'])) { 
 // Vérification si l'étudiant existe
         $etudiant = edit_etudiant_get();
@@ -21,7 +21,7 @@ else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     try {
         edit_etudiant_post();
         echo "<h2>Le mis a jour a réussie !</h2>";
-        echo "<a href='/form/view/index.php'>Voir la liste des étudiants</a>";
+        echo "<a href='/form/controller/list.php'>Voir la liste des étudiants</a>";
     } catch (PDOException $e) {
         echo "Erreur de connexion ou de suppression : " . $e->getMessage();
     }
