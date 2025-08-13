@@ -7,7 +7,7 @@
 </head>
 <body>
     <h2>Informations de l'Étudiant</h2>
-    <form action="/<?php echo isset($etudiant)?'edit':'create'?> " method="post">
+    <form action="/<?php echo isset($etudiant)?'edit':'create'?>" method="post">
         <input type="hidden" name="id" value="<?php  echo isset($etudiant)?$etudiant['id']:'' ?>">
 
         <label>Nom:</label><br>
