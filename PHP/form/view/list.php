@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <link rel="stylesheet" href="/form/view/style/style_list.css">
+    <link rel="stylesheet" href="/form/static/style/list.css">
 </head>
 <body>
     <h2>Liste étudiants</h2>
@@ -35,7 +35,7 @@
                 echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['sexe']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['filiere']) . "</td>";
-                echo '<td><a href="/form/controller/delete.php?id='.$row['id'].'">Supprimer</a> <a href="/form/controller/edit.php?id='.$row['id'].'">modifier</a></td>';
+                echo '<td><a href="#" onclick="deleteEtudiant('.$row['id'].',\''. htmlspecialchars($row['nom']) .'\')">Supprimer</a> <a href="/form/controller/edit.php?id='.$row['id'].'">modifier</a></td>';
                 echo "</tr>";
             }
             
@@ -45,5 +45,6 @@
         ?>
         </tbody>
     </table>
+    <script src="/form/static/js/etudiant.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 require_once '../data/etudiant_data.php';
-if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['id'])) {
+if ($_SERVER["REQUEST_METHOD"] === "DELETE" && isset($_GET['id'])) {
     $id = intval($_GET['id']);
     try {
         

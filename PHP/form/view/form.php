@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <link rel="stylesheet" href="/form/view/style/style.css">
+    <link rel="stylesheet" href="/form/static/style/form.css">
 </head>
 <body>
     <h2>Informations de l'Étudiant</h2>
@@ -35,5 +35,6 @@
 
         <input type="submit" value="Enregistrer">
     </form>
+    <script src="/form/static/js/etudiant.js"></script>
 </body>
 </html>
