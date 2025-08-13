@@ -1,6 +1,6 @@
 <?php
 
-require_once '../data/etudiant_data.php';
+require_once 'data/etudiant_data.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
@@ -23,14 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         create_etudiant($nom, $prenom, $age, $email, $sexe, $filiere);
 
         echo "<h2>Inscription réussie !</h2>";
-        echo "<a href='/form/controller/list.php'>Voir la liste des étudiants</a>";
+        echo "<a href='/'>Voir la liste des étudiants</a>";
     } catch (PDOException $e) {
         echo "Erreur de connexion ou d'insertion : " . $e->getMessage();
     }
 }
 else if ($_SERVER["REQUEST_METHOD"] === "GET") {
     
-  include '../view/form.php';
+  include 'view/form.php';
 
     
 } else {

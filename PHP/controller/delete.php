@@ -1,5 +1,5 @@
 <?php
-require_once '../data/etudiant_data.php';
+require_once 'data/etudiant_data.php';
 if ($_SERVER["REQUEST_METHOD"] === "DELETE" && isset($_GET['id'])) {
     $id = intval($_GET['id']);
     try {
@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE" && isset($_GET['id'])) {
         } else {
             echo "<h2>Erreur lors de la suppression de l'étudiant.</h2>";
         }
-        echo "<a href='/form/controller/list.php'>Voir la liste des étudiants</a>";
+        echo "<a href='/'>Voir la liste des étudiants</a>";
     } catch (PDOException $e) {
         echo "Erreur de connexion ou de suppression : " . $e->getMessage();
     }

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <link rel="stylesheet" href="/form/static/style/form.css">
+    <link rel="stylesheet" href="/static/style/form.css">
 </head>
 <body>
     <h2>Informations de l'Étudiant</h2>
-    <form action="/form/controller/<?php echo isset($etudiant)?'edit':'create'?>.php " method="post">
+    <form action="/<?php echo isset($etudiant)?'edit':'create'?> " method="post">
         <input type="hidden" name="id" value="<?php  echo isset($etudiant)?$etudiant['id']:'' ?>">
 
         <label>Nom:</label><br>
@@ -35,6 +35,6 @@
 
         <input type="submit" value="Enregistrer">
     </form>
-    <script src="/form/static/js/etudiant.js"></script>
+    <script src="/static/js/etudiant.js"></script>
 </body>
 </html>

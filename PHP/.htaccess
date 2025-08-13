@@ -2,3 +2,12 @@ AuthType Basic
 AuthName "Accès restreint"
 AuthUserFile /var/www/html/.htpasswd
 Require valid-user
+
+RewriteEngine On
+
+# Si le fichier ou dossier existe, on le laisse passer
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Sinon, on redirige vers index.php
+RewriteRule ^ index.php [QSA,L] 

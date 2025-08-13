@@ -1,6 +1,6 @@
 function deleteEtudiant(id,nom) {
     if (confirm("Êtes-vous sûr de vouloir supprimer l'étudiant "+nom+"  ?")) {
-        fetch(`/form/controller/delete.php?id=${id}`, {
+        fetch(`/delete?id=${id}`, {
             method: 'DELETE'
         })
         .then(response => {
