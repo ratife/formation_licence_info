@@ -33,7 +33,8 @@
             <option value="Physique" <?php echo isset($etudiant) && $etudiant['filiere']=='Physique'?'selected':'' ?>>Physique</option>
         </select><br><br>
 
-        <input type="submit" value="Enregistrer">
+        <button onclick="saveEtudiant(<?php  echo isset($etudiant)?$etudiant['id']:'0' ?>)" type="button" class="btn">Enregistrer</button> 
+        <a href="/" class="btn">Annuler</a>
     </form>
     <script src="/static/js/etudiant.js"></script>
 </body>

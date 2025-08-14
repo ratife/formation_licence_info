@@ -11,6 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $sexe = htmlspecialchars($_POST["sexe"]);
     $filiere = htmlspecialchars($_POST["filiere"]);
 
+    /*
     echo "<h2>Données reçues :</h2>";
     echo "Nom : $nom<br>";
     echo "Prénom : $prenom<br>";
@@ -18,12 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     echo "Email : $email<br>";
     echo "Sexe : $sexe<br>";
     echo "Filière : $filiere<br>";
-
+    */
     try {
         create_etudiant($nom, $prenom, $age, $email, $sexe, $filiere);
-
-        echo "<h2>Inscription réussie !</h2>";
-        echo "<a href='/'>Voir la liste des étudiants</a>";
+        echo json_encode(["status"=>"OK", "message" => "Inscription réussie !"]);
+        //echo "<h2>Inscription réussie !</h2>";
+        //echo "<a href='/'>Voir la liste des étudiants</a>";
     } catch (PDOException $e) {
         echo "Erreur de connexion ou d'insertion : " . $e->getMessage();
     }

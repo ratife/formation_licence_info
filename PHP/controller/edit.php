@@ -1,8 +1,8 @@
 <?php
 require_once 'data/etudiant_data.php';
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['id'])) { 
-// Vérification si l'étudiant existe
-        $etudiant = edit_etudiant_get();
+        
+        $etudiant = getEtudiantById($_GET['id']);
         if (!$etudiant) {
             echo "<h2>Aucun étudiant trouvé avec cet ID.</h2>";
             exit;
@@ -21,11 +21,9 @@ else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     $filiere = htmlspecialchars($_POST["filiere"]);
     try {
         edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere);
-        if(etudiantCreated($id, $nom, $prenom, $age, $sexe, $email, $filiere))
-        {
-            echo "<h2>Le mis a jour a réussie !</h2>";
-            echo "<a href='/'>Voir la liste des étudiants</a>";
-        }
+        echo "<h2>Le mis a jour a réussie !</h2>";
+        echo "<a href='/'>Voir la liste des étudiants</a>";
+    
     } catch (PDOException $e) {
         echo "Erreur de connexion ou de suppression : " . $e->getMessage();
     }

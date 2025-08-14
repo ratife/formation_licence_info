@@ -73,3 +73,16 @@ function edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere)
         return $stmt->execute();
 
 }
+
+
+function is_existe_email($email)
+{
+    $pdo = new PDO("mysql:host=mysql;dbname=testdb;charset=utf8", "root", "root");
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM etudiants WHERE email = :email");
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    
+    return $stmt->fetchColumn() > 0;
+}
