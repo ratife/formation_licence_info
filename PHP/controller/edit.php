@@ -21,8 +21,11 @@ else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
     $filiere = htmlspecialchars($_POST["filiere"]);
     try {
         edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere);
-        echo "<h2>Le mis a jour a réussie !</h2>";
-        echo "<a href='/'>Voir la liste des étudiants</a>";
+        if(etudiantCreated($id, $nom, $prenom, $age, $sexe, $email, $filiere))
+        {
+            echo "<h2>Le mis a jour a réussie !</h2>";
+            echo "<a href='/'>Voir la liste des étudiants</a>";
+        }
     } catch (PDOException $e) {
         echo "Erreur de connexion ou de suppression : " . $e->getMessage();
     }
