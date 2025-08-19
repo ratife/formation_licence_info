@@ -9,11 +9,31 @@ class EtudiantData {
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function getListEtudiant() {
-        $stmt = $this->pdo->query("SELECT id,nom, prenom, age, email, sexe, filiere FROM etudiants");
+    public function getCountEtudiant($search = '') {
+        $stmt = $this->pdo->prepare("SELECT COUNT(*) FROM etudiants WHERE lower(nom) LIKE lower(:search) OR lower(prenom) LIKE lower(:search)");
+        $search = '%' . $search . '%';
+        $stmt->bindParam(':search', $search);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+    /*
+        $stmt = $this->pdo->query("SELECT COUNT(*) FROM etudiants WHERE nom LIKE ':search' OR prenom LIKE ':search' ");
+        $stmt->bindParam(':search', $search);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }*/
+
+    public function getListEtudiant($page = 1,$search = '', $limit = 5) {
+        $offset = ($page - 1) * $limit;
+        $stmt = $this->pdo->prepare("SELECT id, nom, prenom, age, email, sexe, filiere FROM etudiants WHERE lower(nom) LIKE lower(:search) OR lower(prenom) LIKE lower(:search) LIMIT :offset, :limit");
+        $search = '%' . $search . '%';
+        $stmt->bindParam(':search', $search);
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-
+      
 
     public function getEtudiantById($id) {
         $stmt = $this->pdo->prepare("SELECT id, nom, prenom, age, email, sexe, filiere FROM etudiants WHERE id = :id");

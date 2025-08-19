@@ -30,3 +30,24 @@
 .styled-table tbody tr:hover {
   background-color: #d1f0ec;
 }
+
+.btn{
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn-desactive {
+   display: inline-block;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  background-color: #d1f0ec;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor:not-allowed
+}

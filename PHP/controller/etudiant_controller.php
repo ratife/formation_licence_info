@@ -11,8 +11,17 @@ class EtudiantController {
 
     public function list() {
         try {
-            $list  = $this->etudiantData->getListEtudiant();
-            echo json_encode($list);
+
+            $page = $_GET['page'] ?? 1;
+            $page = intval($page);
+            $search = $_GET['search'] ?? '';
+
+            
+            $nbr = $this->etudiantData->getCountEtudiant($search);
+            //var_dump($nbr);
+             $nbr_page = ceil($nbr / 5);
+            $list  = $this->etudiantData->getListEtudiant($page,$search);
+            //echo json_encode($list);
             require_once 'view/etudiant/list.php';
         } catch (PDOException $e) {
             echo "Erreur de connexion : " . $e->getMessage();

@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <link rel="stylesheet" href="/static/style/list.css">
+    <link rel="stylesheet" href="/static/style/list.css<?php echo '?v=' . time(); ?>">
 </head>
 <body>
     <h2>Liste étudiants</h2>
-    <a href="/create">Créer un étudiant</a>
+    <a href="/create" class="btn">Créer un étudiant</a>
+    <br>
+    <input type="text" id="search" placeholder="Rechercher un étudiant...">
+    <button id="searchBtn" class="btn" onclick="clickRecherche()">Rechercher</button>
+    <script>
+        
+    </script>
+    <br><br>
+    
     <table class="styled-table">
         <thead>
             <tr>
@@ -35,7 +43,7 @@
                 echo "<td>" . htmlspecialchars($row['email']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['sexe']) . "</td>";
                 echo "<td>" . htmlspecialchars($row['filiere']) . "</td>";
-                echo '<td><a href="#" onclick="deleteEtudiant('.$row['id'].',\''. htmlspecialchars($row['nom']) .'\')">Supprimer</a> <a href="/edit?id='.$row['id'].'">modifier</a></td>';
+                echo '<td><a href="#" onclick="deleteEtudiant('.$row['id'].',\''. htmlspecialchars($row['nom']) .'\')" class="btn">Supprimer</a> <a  class="btn" href="/edit?id='.$row['id'].'">modifier</a></td>';
                 echo "</tr>";
             }
             
@@ -45,6 +53,8 @@
         ?>
         </tbody>
     </table>
-    <script src="/static/js/etudiant.js"></script>
+    <a href="/list?page=<?php echo ($page - 1==0)?"1":$page-1  ?>" class="<?php echo ($page-1==0)?"btn-desactive":"btn" ?>"><</a>
+    <a href="/list?page=<?php echo ($nbr_page == $page)?$nbr_page:$page+1 ?>"  class="<?php echo ($nbr_page == $page)?"btn-desactive":"btn" ?>">></a>
+    <script src="/static/js/etudiant.js<?php echo '?v=' . time(); ?>"></script>
 </body>
 </html>

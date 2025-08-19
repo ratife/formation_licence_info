@@ -75,3 +75,11 @@ function saveEtudiant(id)
     }
     
 }
+
+
+function clickRecherche() {
+    
+    const searchValue = document.getElementById('search').value;
+    window.location.href = '/list?search=' + encodeURIComponent(searchValue);
+    
+}   
