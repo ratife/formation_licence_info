@@ -37,3 +37,8 @@ docker-compose down
 htpasswd -c .htpasswd user
 ```
 
+### Entrer dans le contenaire
+```bash
+docker exec -it <name_or_id_contenaire> bash
+```
+
