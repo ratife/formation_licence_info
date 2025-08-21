@@ -8,20 +8,42 @@ class EtudiantController {
         $this->etudiantData = new EtudiantData();
     }
 
+    private function fetch_studient(){
+        $page = $_GET['page'] ?? 1;
+        $page = intval($page);
+        $search = $_GET['search'] ?? '';
+        $nbr = $this->etudiantData->getCountEtudiant($search);
+        $nbr_page = ceil($nbr / 5);
+        $list  = $this->etudiantData->getListEtudiant($page,$search);
+
+        return [
+            'list' => $list,
+            'nbr_page' => $nbr_page
+        ];
+    }
+
+
+    public function list_js() {
+        try {
+            require_once 'view/etudiant/list_js.php';
+        } catch (PDOException $e) {
+            echo "Erreur de connexion : " . $e->getMessage();
+        }
+    } 
+
+    public function list_json() {
+        try {
+            $data = $this->fetch_studient();
+            echo json_encode($data);
+        } catch (PDOException $e) {
+            echo "Erreur de connexion : " . $e->getMessage();
+        }
+    }  
 
     public function list() {
         try {
-
-            $page = $_GET['page'] ?? 1;
-            $page = intval($page);
-            $search = $_GET['search'] ?? '';
-
-            
-            $nbr = $this->etudiantData->getCountEtudiant($search);
-            //var_dump($nbr);
-             $nbr_page = ceil($nbr / 5);
-            $list  = $this->etudiantData->getListEtudiant($page,$search);
-            //echo json_encode($list);
+            $data = $this->fetch_studient();
+            $list = $data['list'];
             require_once 'view/etudiant/list.php';
         } catch (PDOException $e) {
             echo "Erreur de connexion : " . $e->getMessage();

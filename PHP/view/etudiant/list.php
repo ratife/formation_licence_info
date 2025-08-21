@@ -55,6 +55,6 @@
     </table>
     <a href="/list?page=<?php echo ($page - 1==0)?"1":$page-1  ?>" class="<?php echo ($page-1==0)?"btn-desactive":"btn" ?>"><</a>
     <a href="/list?page=<?php echo ($nbr_page == $page)?$nbr_page:$page+1 ?>"  class="<?php echo ($nbr_page == $page)?"btn-desactive":"btn" ?>">></a>
-    <script src="/static/js/etudiant.js<?php echo '?v=' . time(); ?>"></script>
+    <script src="/static/js/etudiant_for_php_page.js<?php echo '?v=' . time(); ?>"></script>
 </body>
 </html>
