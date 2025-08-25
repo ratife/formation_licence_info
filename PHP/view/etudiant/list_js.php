@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <link rel="stylesheet" href="/static/style/list.css<?php echo '?v=' . time(); ?>">
+    <script src="/static/js/etudiant_for_js_page.js<?php echo '?v=' . time(); ?>"></script>
+    <link rel="stylesheet" href="/static/style/list_js.css<?php echo '?v=' . time(); ?>">
 </head>
 <body onload="loadEtudiants()">
     
     <h2>Liste étudiants</h2>
-    <a href="/create" class="btn">Créer un étudiant</a>
+    <a href="/create_js" class="btn">Créer un étudiant</a>
     <br>
     <input type="text" id="search" placeholder="Rechercher un étudiant...">
     <button id="searchBtn" class="btn" onclick="clickRecherche()">Rechercher</button>
@@ -32,6 +33,6 @@
     </table>
     <a  class="btn" onclick="prevPage()"><</a>
     <a   class="btn" onclick="nextPage()">></a>
-    <script src="/static/js/etudiant_for_js_page.js<?php echo '?v=' . time(); ?>"></script>
+    
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <script src="/static/js/etudiant_for_php.js"></script>
     <link rel="stylesheet" href="/static/style/form.css">
+    <script src="/static/js/etudiant_for_js_page.js"></script>
 </head>
 <body>
     <h2>Informations de l'Étudiant</h2>

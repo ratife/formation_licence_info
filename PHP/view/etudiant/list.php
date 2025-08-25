@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <link rel="stylesheet" href="/static/style/list.css<?php echo '?v=' . time(); ?>">
+     <script src="/static/js/etudiant_for_php_page.js<?php echo '?v=' . time(); ?>"></script>
+    <link rel="stylesheet" href="/static/style/list_php.css<?php echo '?v=' . time(); ?>">
 </head>
 <body>
     <h2>Liste étudiants</h2>
@@ -53,8 +54,10 @@
         ?>
         </tbody>
     </table>
+    
+    
     <a href="/list?page=<?php echo ($page - 1==0)?"1":$page-1  ?>" class="<?php echo ($page-1==0)?"btn-desactive":"btn" ?>"><</a>
     <a href="/list?page=<?php echo ($nbr_page == $page)?$nbr_page:$page+1 ?>"  class="<?php echo ($nbr_page == $page)?"btn-desactive":"btn" ?>">></a>
-    <script src="/static/js/etudiant_for_php_page.js<?php echo '?v=' . time(); ?>"></script>
+    
 </body>
 </html>

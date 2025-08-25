@@ -66,7 +66,7 @@ function saveEtudiant(id)
         .then(response => {
             if (response.ok) {
                 alert("Étudiant modifiée avec succès.");
-                window.location = "/";
+                window.location = "";
             } else {
                 alert("Erreur lors de la création de l'étudiant.");
             }

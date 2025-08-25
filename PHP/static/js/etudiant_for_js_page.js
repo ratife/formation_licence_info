@@ -1,5 +1,86 @@
 var currentPage = 1;
-var nbrPage = 1; // Assuming you have a total of 10 pages
+var nbrPage = 1; 
+
+function deleteEtudiant(id, nom)
+{
+    if (confirm("Êtes-vous sûr de vouloir supprimer l'étudiant "+nom+"  ?")) {
+        fetch(`/delete?id=${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Étudiant supprimé avec succès.");
+                window.location.reload();
+            } else {
+                alert("Erreur lors de la suppression de l'étudiant.");
+            }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+}
+
+function saveEtudiant(id)
+{
+    if(id === 0) {
+        const email = document.getElementsByName("email")[0].value;
+        fetch(`/check_mail?email=${email}`, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (response.ok) {
+                    response.json().then(data => {
+                        if (data.is_exist) {
+                            alert("L'email existe déjà. Veuillez en choisir un autre.");
+                        } 
+                        else {
+                            //document.querySelector('form').submit();
+                            const form = document.querySelector('form');
+                            const formData = new FormData(form);
+                            
+                            fetch('/create_js', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    alert("Étudiant créé avec succès.");
+                                    window.location = "/list_js";
+                                } else {
+                                    alert("Erreur lors de la création de l'étudiant.");
+                                }
+                            })
+                            .catch(error => console.error('Erreur:', error));
+                        }
+                    
+                    });
+                } else {
+                    alert("Erreur lors de la suppression de l'étudiant.");
+                }
+            })
+            .catch(error => console.error('Erreur:', error));
+    }
+    else{
+        const form = document.querySelector('form');
+        const formData = new FormData(form);
+        
+        fetch('/edit_js', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Étudiant modifiée avec succès.");
+                window.location = "/list_js";
+            } else {
+                alert("Erreur lors de la création de l'étudiant.");
+            }
+        })
+        .catch(error => console.error('Erreur:', error));
+    }
+    
+}
+
+
 
 function loadEtudiants(searchValue='') {
     console.log("Chargement des étudiants...");
@@ -18,9 +99,9 @@ function loadEtudiants(searchValue='') {
                                 <td>${row.prenom}</td>
                                 <td>${row.age}</td>
                                 <td>${row.email}</td>
-                                <td>${row.date_naissance}</td>
+                                <td>${row.sexe}</td>
                                 <td>${row.filiere}</td>
-                                <td><a href="#" onclick="deleteEtudiant(${row.id}, '${row.nom}')" class="btn">Supprimer</a> <a class="btn" href="/edit?id=${row.id}">modifier</a></td>
+                                <td><a href="#" onclick="deleteEtudiant(${row.id}, '${row.nom}')" class="btn">Supprimer</a> <a class="btn" href="/edit_js?id=${row.id}">modifier</a></td>
                              </tr>`;
                 });
                const tbody = table.tBodies[0];

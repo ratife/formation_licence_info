@@ -18,7 +18,8 @@ class EtudiantController {
 
         return [
             'list' => $list,
-            'nbr_page' => $nbr_page
+            'nbr_page' => $nbr_page,
+            'page' => $page
         ];
     }
 
@@ -44,6 +45,8 @@ class EtudiantController {
         try {
             $data = $this->fetch_studient();
             $list = $data['list'];
+            $page = $data['page'];
+            $nbr_page = $data['nbr_page'];
             require_once 'view/etudiant/list.php';
         } catch (PDOException $e) {
             echo "Erreur de connexion : " . $e->getMessage();
@@ -162,4 +165,67 @@ class EtudiantController {
             echo "Aucune donnée reçue.";
         }
     }
+
+    public function create_js() {
+        
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            
+            $nom = htmlspecialchars($_POST["nom"]);
+            $prenom = htmlspecialchars($_POST["prenom"]);
+            $age = intval($_POST["age"]);
+            $email = htmlspecialchars($_POST["email"]);
+            $sexe = htmlspecialchars($_POST["sexe"]);
+            $filiere = htmlspecialchars($_POST["filiere"]);
+
+            try {
+                $this->etudiantData->create_etudiant($nom, $prenom, $age, $email, $sexe, $filiere);
+                echo json_encode(["status"=>"OK", "message" => "Inscription réussie !"]);
+                //echo "<h2>Inscription réussie !</h2>";
+                //echo "<a href='/'>Voir la liste des étudiants</a>";
+            } catch (PDOException $e) {
+                echo "Erreur de connexion ou d'insertion : " . $e->getMessage();
+            }
+        }
+        else if ($_SERVER["REQUEST_METHOD"] === "GET") {
+             include 'view/etudiant/form_js.php';
+        } else {
+            echo "Aucune donnée reçue.";
+        }
+    }
+    public function edit_js() {
+        if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['id'])) { 
+        
+            $etudiant = $this->etudiantData->getEtudiantById($_GET['id']);
+            if (!$etudiant) {
+                echo "<h2>Aucun étudiant trouvé avec cet ID.</h2>";
+                exit;
+            }
+            include 'view/etudiant/form.php';
+        }
+
+        else if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['id'])) {
+            
+            $id = intval($_POST['id']);
+            $nom = htmlspecialchars($_POST["nom"]);
+            $prenom = htmlspecialchars($_POST["prenom"]);
+            $age = intval($_POST["age"]);
+            $email = htmlspecialchars($_POST["email"]);
+            $sexe = htmlspecialchars($_POST["sexe"]);
+            $filiere = htmlspecialchars($_POST["filiere"]);
+            try {
+                $this->etudiantData->edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere);
+                echo "<h2>Le mis a jour a réussie !</h2>";
+                echo "<a href='/'>Voir la liste des étudiants</a>";
+            
+            } catch (PDOException $e) {
+                echo "Erreur de connexion ou de suppression : " . $e->getMessage();
+            }
+            
+        } 
+
+        else {
+            echo "Aucune donnée reçue.";
+        }
+    }
 }
+
