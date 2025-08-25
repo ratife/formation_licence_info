@@ -36,7 +36,7 @@ class EtudiantData {
       
 
     public function getEtudiantById($id) {
-        $stmt = $this->pdo->prepare("SELECT id, nom, prenom, age, email, sexe, filiere FROM etudiants WHERE id = :id");
+        $stmt = $this->pdo->prepare("SELECT id, nom, prenom, age, email, sexe, filiere,photo FROM etudiants WHERE id = :id");
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -48,9 +48,9 @@ class EtudiantData {
         return $stmt->execute();
     }
 
-    public function create_etudiant($nom, $prenom, $age, $email, $sexe, $filiere) {
+    public function create_etudiant($nom, $prenom, $age, $email, $sexe, $filiere,$file_name) {
         // Préparation de la requête
-        $sql = "INSERT INTO etudiants (nom, prenom, age, email, sexe, filiere,create_time)
+        $sql = "INSERT INTO etudiants (nom, prenom, age, email, sexe, filiere,photo,create_time)
                 VALUES (:nom, :prenom, :age, :email, :sexe, :filiere,now())";
         
         $stmt = $this->pdo->prepare($sql);
@@ -61,18 +61,19 @@ class EtudiantData {
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':sexe', $sexe);
         $stmt->bindParam(':filiere', $filiere);
+        $stmt->bindParam(':file_name', $file_name);
 
         // Exécution
         return $stmt->execute();
     }
 
 
-    public function edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere)
+    public function edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere,$file_name)
     {
         
         // Préparation de la requête
         $sql = "UPDATE etudiants 
-                set nom = :nom, prenom = :prenom, age = :age, email = :email, sexe = :sexe, filiere = :filiere,update_time = now()
+                set nom = :nom, prenom = :prenom, age = :age, email = :email, sexe = :sexe, filiere = :filiere,photo=:file_name,update_time = now()
                 WHERE id = :id
                 ";
         
@@ -85,6 +86,8 @@ class EtudiantData {
         $stmt->bindParam(':sexe', $sexe);
         $stmt->bindParam(':filiere', $filiere);
         $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':file_name', $file_name);
+
 
         // Exécution
         return $stmt->execute();

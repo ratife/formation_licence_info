@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
     <script src="/static/js/etudiant_for_php_page.js<?php echo '?v=' . time(); ?>"></script>
-    <link rel="stylesheet" href="/static/style/form.css">
+    <link rel="stylesheet" href="/static/style/form.css<?php echo '?v=' . time(); ?>">
 </head>
 <body>
     <h2>Informations de l'Étudiant</h2>
     <form action="/<?php echo isset($etudiant)?'edit':'create'?>" method="post">
+        <img src="<?php echo isset($etudiant) ? '/uploads/' . $etudiant['photo'] : '';?>" alt="Photo de l'étudiant" width="100"><br><br>
+
         <input type="hidden" name="id" value="<?php  echo isset($etudiant)?$etudiant['id']:'' ?>">
 
         <label>Nom:</label><br>
@@ -17,6 +19,10 @@
         <label>Prénom :</label><br>
         <input type="text" name="prenom" required value="<?php  echo isset($etudiant)?$etudiant['prenom']:'' ?>"><br><br>
 
+        <label>Photo :</label><br>
+        <input name="photo" type="file" /><br><br>
+        
+        
         <label>Âge :</label><br>
         <input type="number" name="age" min="0" required value="<?php  echo isset($etudiant)?$etudiant['age']:'' ?>"><br><br>
 

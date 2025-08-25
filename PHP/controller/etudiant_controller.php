@@ -5,6 +5,7 @@ class EtudiantController {
 
     public function __construct() {
         require_once 'data/etudiant_data.php';
+        require_once 'data/file_tool.php';
         $this->etudiantData = new EtudiantData();
     }
 
@@ -124,7 +125,9 @@ class EtudiantController {
             $sexe = htmlspecialchars($_POST["sexe"]);
             $filiere = htmlspecialchars($_POST["filiere"]);
             try {
-                $this->etudiantData->edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere);
+                $file_name = saveFile();
+                $this->etudiantData->edit_etudiant_post($id,$nom,$prenom,$age,$email,$sexe,$filiere,$file_name );
+                
                 echo "<h2>Le mis a jour a réussie !</h2>";
                 echo "<a href='/'>Voir la liste des étudiants</a>";
             

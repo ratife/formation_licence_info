@@ -10,3 +10,5 @@ CREATE TABLE `etudiants` (
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+ALTER TABLE `etudiants` ADD COLUMN `photo` VARCHAR(255) NULL AFTER `filiere`;

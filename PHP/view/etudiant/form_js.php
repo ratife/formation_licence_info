@@ -17,6 +17,10 @@
         <label>Prénom :</label><br>
         <input type="text" name="prenom" required value="<?php  echo isset($etudiant)?$etudiant['prenom']:'' ?>"><br><br>
 
+        <label>Photo :</label><br>
+        <input name="photo" type="file" /><br><br>
+        <img src="<?php echo isset($etudiant) ? '/uploads/' . $etudiant['photo'] :'';?>" alt="Photo de l'étudiant" width="100"><br><br>
+        
         <label>Âge :</label><br>
         <input type="number" name="age" min="0" required value="<?php  echo isset($etudiant)?$etudiant['age']:'' ?>"><br><br>
 
