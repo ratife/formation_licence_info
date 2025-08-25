@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
-    <script src="/static/js/etudiant_for_php.js"></script>
+    <script src="/static/js/etudiant_for_php_page.js<?php echo '?v=' . time(); ?>"></script>
     <link rel="stylesheet" href="/static/style/form.css">
 </head>
 <body>

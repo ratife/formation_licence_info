@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Formulaire Étudiant</title>
     <link rel="stylesheet" href="/static/style/form.css">
-    <script src="/static/js/etudiant_for_js_page.js"></script>
+    <script src="/static/js/etudiant_for_js_page.js<?php echo '?v=' . time(); ?>"></script>
 </head>
 <body>
     <h2>Informations de l'Étudiant</h2>
